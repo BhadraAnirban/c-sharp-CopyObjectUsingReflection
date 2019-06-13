@@ -1,0 +1,22 @@
+
+public void CopyWorkflow(int workflowID)
+{
+
+var workflow = db.ClientWorkFlow.Single(p => p.ClientWorkFlowID == workflowID); // This will be the object which need to be copied.
+// You can get the object by creating or using your choice. Here the class name is ClientWorkFlow.
+
+    var newWorkflow = new ClientWorkFlow();                        
+    newWorkflow = CopyGenericEntity<ClientWorkFlow>(workflow, newWorkflow);
+                        
+}
+
+public T CopyGenericEntity<T>(T oldObject, T newObject)
+{
+    var pi = typeof(T).GetProperties();
+    foreach(var prop in pi)
+    {
+        PropertyInfo propertyInfo = newObject.GetType().GetProperty(prop.Name);
+        propertyInfo.SetValue(newObject, prop.GetValue(oldObject, null));
+    }
+    return newObject;
+}
