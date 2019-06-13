@@ -9,7 +9,7 @@ Class MyClass {
   public int Age {get; set;}
 }
 
-public void GetNewObject()
+### public void GetNewObject()
 {
   MyClass oldEntity = new MyClass();
   oldEntity.Name = "PMKJ";
@@ -31,3 +31,4 @@ public T CopyGenericEntity<T>(T oldObject, T newObject)
     }
     return newObject;
 }
+###
